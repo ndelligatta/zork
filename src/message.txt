@@ -1,0 +1,95 @@
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+public class Room
+{
+    private String roomName;
+    private String descr;
+    private Items item;
+    private ArrayList<Items> listOfItems;
+    private HashMap<String, String> listOfMonster = new HashMap<String, String>();
+    private HashMap<String, Room> roomExit;
+
+    public Room(){
+        roomName= "Normal";
+        descr = "Normal";
+
+        listOfItems = new ArrayList<Items>();
+
+        roomExit = new HashMap<String, Room>();
+    }
+
+    public Room(String descr)
+    {
+        this.descr = descr;
+        roomExit = new HashMap<String, Room>()
+    }
+
+    public void setRoomExit(char direction, Room room) throws Exception{
+        String direction = "";
+        switch (direction){
+            case'E' : direction  = "East";
+            break;
+
+            case'N' : direction = "North";
+            break;
+
+            case'S' : direction = "South";
+            break;
+
+            case'W' : direction = "West";
+            break;
+
+            case'U' : direction = "Up";
+            break;
+
+            case'D' : direction = "Down";
+            break;
+        }
+    }
+
+    public void leavingRoom(Room north, Room east, Room south, Room west, Room up, Room down)
+    {
+        if(north != null)
+            roomExit.put("north", north);
+        if(south != null)
+            roomExit.put("north", south);
+        if(east != null)
+            roomExit.put("north", east);
+        if(west != null)
+            roomExit.put("north", west);
+        if(up != null)
+            roomExit.put("north", up);
+        if(down != null)
+            roomExit.put("north", down);
+    }
+
+    public Room nextRoom(String direction)
+    {
+        return (Room)roomExit.get(direction);
+    }
+
+    public String getRoomName()
+    {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName)
+    {
+        this.roomName = roomName;
+    }
+
+    public String getDescr()
+    {
+        return descr;
+    }
+
+    public void setDescr(String Descr)
+    {
+        this.descr = descr;
+    }
+    
+
+}
